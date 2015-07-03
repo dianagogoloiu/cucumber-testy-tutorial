@@ -117,13 +117,14 @@ I_enter_credentials("eu@fast.com","eu.pass");
 
     }
 
+    @Given("^I successfully login$")
+    public void I_successfully_login() throws Throwable {
+        I_access_the_login_page();
+        I_insert_valid_credentials();
+        I_click_login_button();
+        I_check_if_user_was_logged_in();
 
-
-
-
-
-
-
+    }
 
 
 //
