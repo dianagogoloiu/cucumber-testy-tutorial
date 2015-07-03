@@ -13,7 +13,3 @@ Feature: Login
     When I click login button
     Then I expect invalid credential message
 
-
-    Scenario: Open any web page
-      Given I open this url "http://google.com"
-      Then I send 5 into  search field
