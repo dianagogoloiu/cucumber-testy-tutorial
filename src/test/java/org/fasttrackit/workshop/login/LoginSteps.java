@@ -11,6 +11,7 @@ import org.fasttrackit.util.TestBaseNative;
 import org.fasttrackit.workshop.pagefactory.login.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,15 @@ public class LoginSteps extends TestBaseNative {
 
     LoginPage loginPage=new LoginPage();
 
+    public LoginSteps() {
+
+        initPage();
+
+    }
+
+    public void initPage() {
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+    }
 
 
     @Given("^I access the login page$")
@@ -41,7 +51,7 @@ I_enter_credentials("eu@fast.com", "eu.pass");
 
     @When("^I click login button$")
     public void I_click_login_button() throws Throwable {
-        loginPage.clickOnLoginButton(driver);
+        loginPage.clickOnLoginButton();
 
      }
 
