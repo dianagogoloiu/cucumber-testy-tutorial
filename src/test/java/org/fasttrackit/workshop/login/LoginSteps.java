@@ -113,13 +113,10 @@ I_enter_credentials("eu@fast.com", "eu.pass");
     public void I_enter_credentials(String emailv, String passwordv) throws Throwable {
 
 
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys(emailv);
-
-        WebElement password=driver.findElement(By.id("password"));
-        password.sendKeys(passwordv);
+        loginPage.enterCredentials(emailv, passwordv);
 
     }
+
 
     @Then("^I expect \"([^\"]*)\"error message$")
     public void I_expect_error_message(String expectedmessage) throws Throwable {
