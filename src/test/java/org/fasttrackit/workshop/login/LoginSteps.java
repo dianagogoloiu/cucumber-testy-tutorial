@@ -20,7 +20,9 @@ import static org.hamcrest.core.Is.is;
 
 public class LoginSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
-private LoginView loginPage=new LoginView();
+    public static final String VALID_EMAIL = "eu@fast.com";
+    public static final String VALID_PASSWORD = "eu.pass";
+    private LoginView loginPage=new LoginView();
 
    /// LoginPage loginPage=new LoginPage();
 
@@ -49,7 +51,7 @@ private LoginView loginPage=new LoginView();
 //
         WebElement password=driver.findElement(By.id("password"));
       //  password.sendKeys("eu.pass");
-I_enter_credentials("eu@fast.com", "eu.pass");
+I_enter_credentials(VALID_EMAIL, VALID_PASSWORD);
     }
 
     @When("^I click login button$")
