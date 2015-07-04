@@ -1,7 +1,6 @@
-package org.fasttrackit.workshop.pagefactory.login;
+package org.fasttrackit.workshop.login;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.sdl.selenium.web.WebLocator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -11,23 +10,22 @@ import org.slf4j.LoggerFactory;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class LoginPage {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginPage.class);
+public class LoginView {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginView.class);
 
     @FindBy(how = How.ID, using = "email")
     private WebElement emailEl;
 
-    @FindBy(how = How.ID, using = "loginButton")
-    private WebElement clicklog;
 
-    @FindBy(how = How.ID, using = "email")
-    private WebElement email;
+    private WebLocator clicklog= new WebLocator().setId("loginButton");
 
-    @FindBy(how = How.ID, using = "password")
-    private WebElement password;
 
-    @FindBy(how = How.CLASS_NAME, using = "error-msg")
-    private WebElement error;
+    private WebLocator email= new WebLocator().setId("email");
+
+
+    private WebLocator password= new WebLocator().setId("password");
+
+    private WebLocator error=new WebLocator().setClasses("error-msg");
 
 
     public void enterEmail(String email) {
@@ -49,7 +47,7 @@ public class LoginPage {
     public void errorMessageSouldbePresent(String expectedmessage) {
         //  WebElement error = driver.findElement(By.className("error-msg"));
         //String expectedmessage = "Invalid user or password!";
-        assertThat(error.getText(), is(expectedmessage));
+        assertThat(error.getHtmlText(), is(expectedmessage));
 
     }
 }

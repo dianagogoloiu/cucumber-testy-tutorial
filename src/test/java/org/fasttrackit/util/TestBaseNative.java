@@ -19,6 +19,7 @@ public abstract class TestBaseNative {
     private static void startSuite() {
         try {
             System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\drivers\\chromedriver.exe");
+           // driver = new ChromeDriver();
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait((long) 150, TimeUnit.MILLISECONDS);

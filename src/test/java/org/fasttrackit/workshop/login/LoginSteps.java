@@ -7,7 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.Assert;
-import org.fasttrackit.util.TestBaseNative;
+import org.fasttrackit.util.TestBase;
 import org.fasttrackit.workshop.pagefactory.login.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -18,25 +18,28 @@ import org.slf4j.LoggerFactory;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class LoginSteps extends TestBaseNative {
+public class LoginSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
+private LoginView loginPage=new LoginView();
 
-    LoginPage loginPage=new LoginPage();
+   /// LoginPage loginPage=new LoginPage();
 
-    public LoginSteps() {
+  //  public LoginSteps() {
 
-        initPage();
+    //    initPage();
+//
+  //  }
 
-    }
+ //   public void initPage() {
+  //      loginPage = PageFactory.initElements(driver, LoginPage.class);
+  //  }
 
-    public void initPage() {
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-    }
 
 
     @Given("^I access the login page$")
     public void I_access_the_login_page() throws Throwable {
-      driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
+     driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
+    //    driver.get("file:///C:/Users/dianag/Desktop/installers/app-demo/login.html");
     }
 
     @Given("^I insert valid credentials$")
@@ -104,7 +107,7 @@ I_enter_credentials("eu@fast.com", "eu.pass");
     }
 
 
-    }
+
 
     @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
     public void I_enter_credentials(String emailv, String passwordv) throws Throwable {
@@ -142,9 +145,6 @@ I_enter_credentials("eu@fast.com", "eu.pass");
   //  public void I_send_into_search_field(int arg1) throws Throwable {
   //      System.out.println("numarul este" + arg1);
   //  }
-
-
-
 
 
 
