@@ -8,6 +8,9 @@ import org.openqa.selenium.support.How;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 public class LoginPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginPage.class);
 
@@ -22,6 +25,9 @@ public class LoginPage {
 
     @FindBy(how = How.ID, using = "password")
     private WebElement password;
+
+    @FindBy(how = How.CLASS_NAME, using = "error-msg")
+     private  WebElement error;
 
 
 
@@ -41,5 +47,8 @@ public class LoginPage {
     }
 
 
-
+    public void errorMessageSouldbePresent( String expectedmessage ) {
+     //  WebElement error = driver.findElement(By.className("error-msg"));
+        //String expectedmessage = "Invalid user or password!";
+        assertThat(error.getText(), is(expectedmessage));
 }

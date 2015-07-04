@@ -41,7 +41,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I insert valid credentials$")
     public void I_insert_valid_credentials() throws Throwable {
- WebElement email = driver.findElement(By.id("email"));
+    WebElement email = driver.findElement(By.id("email"));
     //    email.sendKeys("eu@fast.com");
 //
         WebElement password=driver.findElement(By.id("password"));
@@ -98,15 +98,12 @@ I_enter_credentials("eu@fast.com", "eu.pass");
 
     @Then("^I expect invalid credential message$")
     public void I_expect_invalid_credential_message() throws Throwable {
-        errorMessageSouldbePresent( "Invalid user or password!");
+        loginPage.errorMessageSouldbePresent("Invalid user or password!");
 
      //   Utils.sleep(1000);
     }
 
-    private void errorMessageSouldbePresent( String expectedmessage ) {
-        WebElement error = driver.findElement(By.className("error-msg"));
-        //String expectedmessage = "Invalid user or password!";
-        assertThat(error.getText(), is(expectedmessage));
+
     }
 
     @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
@@ -121,7 +118,7 @@ I_enter_credentials("eu@fast.com", "eu.pass");
     @Then("^I expect \"([^\"]*)\"error message$")
     public void I_expect_error_message(String expectedmessage) throws Throwable {
 
-        errorMessageSouldbePresent(expectedmessage);
+        loginPage.errorMessageSouldbePresent(expectedmessage);
 
     }
 
