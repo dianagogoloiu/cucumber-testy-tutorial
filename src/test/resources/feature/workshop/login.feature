@@ -1,3 +1,4 @@
+@screen
 Feature: Login
 
   Scenario: Login successfully
@@ -9,8 +10,7 @@ Feature: Login
 
   Scenario: Login with wrong credentials
     Given I access the login page
-    And I insert invalid credentials
-    When I click login button
+    And I insert invalid button
     Then I expect invalid credential message
 
 
@@ -34,11 +34,12 @@ Feature: Login
       | email         | pass     | message                     |
       |               |          | Please enter your email!    |
       | aaa@fast.com  |          | Please enter your password! |
-      |               | onlypass | Please enter your email     |
-      | sasa@fast.com | somepass | Invalid user or password    |
+      |               | onlypass | Please enter your email!    |
+      | sasa@fast.com | somepass | Invalid user or password!   |
 
-Scenario: Logout success
-  Given I successfully login
+
+  Scenario: Logout success
+    Given I successfully login
   #Then I check if user was logged in
   #When I click on some elements
 
