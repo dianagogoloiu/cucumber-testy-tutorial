@@ -6,17 +6,22 @@ import com.sdl.selenium.web.button.Button;
 import com.sdl.selenium.web.form.TextField;
 import com.sdl.selenium.web.utils.Utils;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 public class PreferencesWindow {
 
-private WebLocator window= new WebLocator().setId("preferences-win");
+    private WebLocator window = new WebLocator().setId("preferences-win");
+    private WebLocator statusMessageEl = new WebLocator(window).setClasses("status-msg");
 
     private Button preferencesButton = new Button().setText("Preferences");
-    private TextField currentpassword = new TextField().setLabel("Current Password");
 
-    private TextField newPassword = new TextField().setLabel("New Password");
-    private TextField confirmNewPassword = new TextField().setLabel("Repeat Password");
-    private Button saveButton = new Button().setText("Save").setContainer(window);
-    private Button closeButton = new Button().setText("Close").setContainer(window);
+    private TextField currentpassword = new TextField(window).setLabel("Current Password");//.setContainer(window);
+
+    private TextField newPassword = new TextField(window).setLabel("New Password");
+    private TextField confirmNewPassword = new TextField(window).setLabel("Repeat Password");
+    private Button saveButton = new Button(window).setText("Save");//.setContainer(window);
+    private Button closeButton = new Button(window).setText("Close");//.setContainer(window);
 
 
     //.setLabelPosition("//following-sibling::*//input");
@@ -26,7 +31,6 @@ private WebLocator window= new WebLocator().setId("preferences-win");
     //label[text()='Current Password']//following-sibling::*//input
 
 
-
     public static void main(String[] args) {
 
 
@@ -34,18 +38,19 @@ private WebLocator window= new WebLocator().setId("preferences-win");
         System.out.println(preferencesWindow.saveButton.getPath());
         System.out.println(preferencesWindow.window.getPath());
         System.out.println(preferencesWindow.closeButton.getPath());
+        System.out.println(preferencesWindow.statusMessageEl.getPath());
+
     }
 
     public void open() {
-        Utils.sleep(1000);
         preferencesButton.click();
-
+        Utils.sleep(1000);//because of fading window
 
 
     }
 
     public void typeCurrentPassword(String password) {
-        Utils.sleep(1000);
+
         currentpassword.setValue(password);
 
     }
@@ -59,5 +64,22 @@ private WebLocator window= new WebLocator().setId("preferences-win");
     public void typeConfirmPassword(String password) {
         confirmNewPassword.setValue(password);
 
+    }
+
+    public void save() {
+        saveButton.assertClick();
+
+    }
+
+
+    public void statusMessageSouldbePresent(String expectedmessage) {
+        //  WebElement error = driver.findElement(By.className("error-msg"));
+        //String expectedmessage = "Invalid user or password!";
+        assertThat(statusMessageEl.getHtmlText(), is(expectedmessage));
+    }
+
+    public void close() {
+        closeButton.assertClick();
+        Utils.sleep(1000);//because of fading window
     }
 }

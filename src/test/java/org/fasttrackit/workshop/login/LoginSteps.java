@@ -21,7 +21,7 @@ import static org.hamcrest.core.Is.is;
 public class LoginSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
     public static final String VALID_EMAIL = "eu@fast.com";
-    public static final String VALID_PASSWORD = "eu.pass";
+    public static  String VALID_PASSWORD = "eu.pass";
     private LoginView loginPage=new LoginView();
 
    /// LoginPage loginPage=new LoginPage();
